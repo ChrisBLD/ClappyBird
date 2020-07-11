@@ -21,6 +21,9 @@ private:
 	//Holds sprite of background
 	Sprite m_Sprite;
 
+	//Holds dimensions of image file used for background
+	Vector2f m_Dimensions;
+
 public:
 	Background(bool whichBG);
 

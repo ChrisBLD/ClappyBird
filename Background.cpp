@@ -8,13 +8,15 @@ Background::Background(bool whichBG)
 
 	m_Texture = TextureHolder::GetTexture("graphics/backgroundDouble.png");
 	m_Sprite.setTexture(m_Texture);
+
+	m_Dimensions = Vector2f(m_Texture.getSize());
 	
 	if (m_IsPrimary)
 	{
 		m_PositionX = 0.0f;
 	}
 	else {
-		m_PositionX = 3830.0f;
+		m_PositionX = m_Dimensions.x - 10.0f;
 	}
 }
 
