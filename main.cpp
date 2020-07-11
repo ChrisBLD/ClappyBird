@@ -14,10 +14,10 @@ int main()
 
     //Get the screen resolution and create an SFML window
     Vector2f resolution;
-    resolution.x = VideoMode::getDesktopMode().width;
-    resolution.y = VideoMode::getDesktopMode().height;
+	resolution.x = VideoMode::getDesktopMode().width;
+	resolution.y = VideoMode::getDesktopMode().height;
 
-    RenderWindow window(VideoMode(resolution.x, resolution.y), "Zombie Arena", Style::Fullscreen);
+    RenderWindow window(VideoMode(resolution.x, resolution.y), "Clappy Bird", Style::Fullscreen);
 
     //Create an SFML view for the main action
     View mainView(sf::FloatRect(0, 0, resolution.x, resolution.y));
@@ -46,16 +46,15 @@ int main()
 	//Create a boolean to monitor whether the game is currently playing or paused
 	bool playing = false;
 
+	//Create a boolean to monitor whether the game is over or not
+	bool gameOver = false;
+
 	//Text to tell the player the game is currently paused
 	Text gamePausedText;
 	gamePausedText.setFont(flappyFont);
 	gamePausedText.setCharacterSize(85);
 	gamePausedText.setString("Game Paused");
 
-	FloatRect textRect = gamePausedText.getLocalBounds();
-	//Centre text based on size
-	gamePausedText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-	gamePausedText.setPosition(resolution.x / 2.0f, resolution.y / 2.0f);
 
     while (window.isOpen()) {
 
@@ -72,6 +71,10 @@ int main()
 			{
 				if (event.key.code == Keyboard::Enter)
 				{
+					if (gameOver)
+					{
+						//Restart the game and all params.
+					}
 					playing = !playing;
 				}
 				else if (event.key.code == Keyboard::Escape)
@@ -90,7 +93,6 @@ int main()
 		*/
 		if (playing)
 		{
-
 			//Update the delta time
 			Time dt = clock.restart();
 			//Update the total game time
@@ -135,9 +137,25 @@ int main()
 			{
 				clappy.update(dtAsSeconds, false);
 			}
+
+			//If Clappy is below the resolution
+ 			if (clappy.getPosition().y > resolution.y)
+			{
+				playing = !playing;
+				gameOver = true;
+				gamePausedText.setString("Game Over 0 Press Enter to restart");
+				FloatRect textRect = gamePausedText.getLocalBounds();
+				//Centre text based on size
+				gamePausedText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+				gamePausedText.setPosition(resolution.x / 2.0f, resolution.y / 2.0f);
+			}
 		}
 		else
 		{
+			FloatRect textRect = gamePausedText.getLocalBounds();
+			//Centre text based on size
+			gamePausedText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+			gamePausedText.setPosition(resolution.x / 2.0f, resolution.y / 2.0f);
 			//Need to restart the clock every frame since the clock time is used to move objects,
 			//and if we don't then when the game is unpaused objects will skip to where they would've
 			//been had we not paused at all.

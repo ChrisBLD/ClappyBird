@@ -16,12 +16,13 @@ Clappy::Clappy()
 
 	m_Sprite.setPosition(m_Position);
 
-	//Scale clappy image to not be enormous
 	sf::Vector2f targetSize(120.0f, 110.66f);
 	m_Sprite.setScale(
 		targetSize.x / m_Sprite.getLocalBounds().width,
 		targetSize.y / m_Sprite.getLocalBounds().height);
 }
+
+
 
 Sprite Clappy::getSprite()
 {
@@ -63,4 +64,9 @@ void Clappy::update(float elapsedTime, bool spacePressed)
 
 	//m_Position.y = m_Position.y + (elapsedTime * gravity);
 	m_Sprite.setPosition(m_Position);
+}
+
+Vector2f Clappy::getPosition()
+{
+	return m_Position;
 }

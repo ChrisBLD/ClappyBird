@@ -24,16 +24,12 @@ private:
 public:
 	Clappy();
 
-	bool hit();
-
 	Sprite getSprite();
 
 	float getVelocity();
 
-	void applyUpForce();
+	Vector2f getPosition();
 
 	void update(float elapsedTime, bool spacePressed);
-
-	void spawn();
 
 };
