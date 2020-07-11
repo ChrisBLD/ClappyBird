@@ -37,6 +37,11 @@ float Background::getCurrentPosition()
 	return m_PositionX;
 }
 
+Vector2f Background::getTextureDimensions()
+{
+	return m_Dimensions;
+}
+
 void Background::update(float elapsedTime)
 {
 	m_PositionX -= (SCROLL_SPEED * elapsedTime);

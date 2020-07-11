@@ -71,17 +71,23 @@ int main()
 		//Make a decimal fraction of 1 from the delta time
 		float dtAsSeconds = dt.asSeconds();
 
+		//Update the backgrounds to move them at the required speed
 		primaryBG.update(dtAsSeconds);
 		secondaryBG.update(dtAsSeconds);
 
-		if (primaryBG.getCurrentPosition() < -3840.0f)
+		//These statements control whether the backgrounds have passed all the way through and are no longer
+		//visible to the user. If they are, they are appended to the end of the current background. This
+		//means that each time a background disappears from view on the left, it is sent to the far right,
+		//creating an infinitely scrolling background.
+
+		if (primaryBG.getCurrentPosition() < -primaryBG.getTextureDimensions().x)
 		{
-			primaryBG.setNextPos(secondaryBG.getCurrentPosition() + 3830.0f);
+			primaryBG.setNextPos(secondaryBG.getCurrentPosition() + (primaryBG.getTextureDimensions().x -10.0f));
 		}
 
-		if (secondaryBG.getCurrentPosition() < -3840.0f)
+		if (secondaryBG.getCurrentPosition() < -secondaryBG.getTextureDimensions().x)
 		{
-			secondaryBG.setNextPos(primaryBG.getCurrentPosition() + 3830.0f);
+			secondaryBG.setNextPos(primaryBG.getCurrentPosition() + (secondaryBG.getTextureDimensions().x - 10.0f));
 		}
 
 

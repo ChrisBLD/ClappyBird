@@ -33,5 +33,7 @@ public:
 
 	float getCurrentPosition();
 
+	Vector2f getTextureDimensions();
+
 	void update(float elapsedTime);
 };
