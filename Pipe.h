@@ -12,6 +12,9 @@ private:
 	//Speed at which background will scroll
 	const float SCROLL_SPEED = 175.0f;
 
+	//Constant pipe length
+	const float PIPE_LENGTH = 827.0f;
+
 	//Height of bottom level of pipe
 	float m_Height;
 
@@ -48,7 +51,7 @@ public:
 
 	void deactivate();
 
-	bool hitByPlayer();
+	bool hitByPlayer(FloatRect playerPosition);
 
 	void update(float elapsedTime);
 };

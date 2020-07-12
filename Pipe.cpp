@@ -60,8 +60,28 @@ void Pipe::deactivate()
 	m_isActive = false;
 }
 
-bool Pipe::hitByPlayer()
-{
+bool Pipe::hitByPlayer(FloatRect playerPosition)
+{	
+	if (playerPosition.intersects(m_Sprite.getGlobalBounds()))
+	{
+		//When the player intersects the tree, we need to make sure that the player
+		//is in the gap.
+		float topLeftY = playerPosition.top;
+		float bottomRightY = playerPosition.top + playerPosition.width;
+
+		float yRangeMin = m_Position.y + PIPE_LENGTH;
+		float yRangeMax = m_Position.y + PIPE_LENGTH + PIPE_OFFSET;
+
+		if (topLeftY > yRangeMin && bottomRightY < yRangeMax)
+		{
+			return false;
+		}
+		else
+		{
+			return true; 
+		}
+	}
+	return false;
 
 }
 

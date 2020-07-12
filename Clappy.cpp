@@ -21,10 +21,12 @@ Clappy::Clappy()
 
 	m_Sprite.setPosition(m_Position);
 
-	sf::Vector2f targetSize(120.0f, 110.66f);
+	sf::Vector2f targetSize(CLAPPY_SIZE_X, CLAPPY_SIZE_Y);
 	m_Sprite.setScale(
 		targetSize.x / m_Sprite.getLocalBounds().width,
 		targetSize.y / m_Sprite.getLocalBounds().height);
+
+	m_Sprite.setOrigin(CLAPPY_SIZE_X / 2.0f, CLAPPY_SIZE_Y / 2.0f);
 }
 
 

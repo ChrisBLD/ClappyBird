@@ -197,6 +197,24 @@ int main()
 				gamePausedText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 				gamePausedText.setPosition(resolution.x / 2.0f, resolution.y / 2.0f);
 			}
+
+			//If Clappy has hit a pipe
+			for (Pipe pipe : pipeArray)
+			{	
+				if (pipe.isActive())
+				{
+					if (pipe.hitByPlayer(clappy.getSprite().getGlobalBounds()))
+					{
+						playing = !playing;
+						gameOver = true;
+						gamePausedText.setString("Game Over 0 Press Enter to restart");
+						FloatRect textRect = gamePausedText.getLocalBounds();
+						//Centre text based on size
+						gamePausedText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+						gamePausedText.setPosition(resolution.x / 2.0f, resolution.y / 2.0f);
+					}
+				}
+			}
 		}
 		else
 		{
