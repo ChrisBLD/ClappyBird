@@ -3,6 +3,7 @@
 #include "TextureHolder.h"
 #include "Clappy.h"
 #include "Background.h"
+#include "Pipe.h"
 
 using namespace sf;
 
@@ -36,12 +37,19 @@ int main()
 	Background secondaryBG(false);
 
 
+
+
 	//Load in up and down textures for Clappy
 	Texture textureClappyUp = TextureHolder::GetTexture("graphics/clappyUp.png");
 	Texture textureClappyDown = TextureHolder::GetTexture("graphics/clappyDown.png");
 
 	//Create an instance of Clappy
 	Clappy clappy;
+
+	//Create an instance of the Pipe
+	Pipe pipe;
+	float pipeHeight = pipe.getTextureHeight();
+	pipe.setOffset(pipeHeight * (5.0f/23.0f));
 
 	//Create a boolean to monitor whether the game is currently playing or paused
 	bool playing = false;
@@ -130,6 +138,15 @@ int main()
 				secondaryBG.setNextPos(primaryBG.getCurrentPosition() + (secondaryBG.getTextureDimensions().x - 10.0f));
 			}
 
+			//Update the first pipe object
+			if (pipe.isActive()) {
+				pipe.update(dtAsSeconds);
+			}
+			else
+			{
+				pipe.spawn();
+			}
+
 
 			//If the space key has just been pressed, clappy needs to go up (if he can)
 			//Otherwise, he needs to go down
@@ -185,6 +202,9 @@ int main()
 		// Draw the two backgrounds
         window.draw(primaryBG.getSprite());
 		window.draw(secondaryBG.getSprite());
+
+		//Draw the pipe
+		window.draw(pipe.getSprite());
 
 		//Draw Clappy
 		window.draw(clappy.getSprite());

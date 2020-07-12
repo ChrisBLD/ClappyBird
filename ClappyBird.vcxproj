@@ -152,11 +152,13 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Clappy.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="TextureHolder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clappy.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Pipe.h" />
     <ClInclude Include="TextureHolder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
