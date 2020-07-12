@@ -71,11 +71,22 @@ int main()
 			{
 				if (event.key.code == Keyboard::Enter)
 				{
+					playing = !playing;
 					if (gameOver)
 					{
-						//Restart the game and all params.
+						clappy.restart();
+						primaryBG.restart(true);
+						secondaryBG.restart(false);
+						playing = true;
+						gameOver = false;
+
+						gamePausedText.setString("Game Paused");
+						FloatRect textRect = gamePausedText.getLocalBounds();
+						//Centre text based on size
+						gamePausedText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+						gamePausedText.setPosition(resolution.x / 2.0f, resolution.y / 2.0f);
+						clock.restart();
 					}
-					playing = !playing;
 				}
 				else if (event.key.code == Keyboard::Escape)
 				{

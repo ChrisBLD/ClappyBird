@@ -11,8 +11,13 @@ Clappy::Clappy()
 	m_Sprite.setTexture(m_TextureDown);
 
 	//Initialise starting position.
-	m_Position.x = 400.0f;
-	m_Position.y = 400.0f;
+	m_Position.x = STARTING_POS.x;
+	m_Position.y = STARTING_POS.y;
+
+	//Initialise vel/accel/grav values
+	m_Velocity = STARTING_VELOCITY;
+	m_Acceleration = STARTING_ACCEL;
+	m_Gravity = STARTING_GRAV;
 
 	m_Sprite.setPosition(m_Position);
 
@@ -69,4 +74,14 @@ void Clappy::update(float elapsedTime, bool spacePressed)
 Vector2f Clappy::getPosition()
 {
 	return m_Position;
+}
+
+void Clappy::restart()
+{
+	m_Position.x = STARTING_POS.x;
+	m_Position.y = STARTING_POS.y;
+
+	m_Velocity = STARTING_VELOCITY;
+	m_Acceleration = STARTING_ACCEL;
+	m_Gravity = STARTING_GRAV;
 }

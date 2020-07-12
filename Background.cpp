@@ -48,3 +48,16 @@ void Background::update(float elapsedTime)
 	m_Sprite.setPosition(Vector2f(m_PositionX, 0.0f));
 
 }
+
+void Background::restart(bool whichBG)
+{
+	m_IsPrimary = whichBG;
+
+	if (m_IsPrimary)
+	{
+		m_PositionX = 0.0f;
+	}
+	else {
+		m_PositionX = m_Dimensions.x - 10.0f;
+	}
+}

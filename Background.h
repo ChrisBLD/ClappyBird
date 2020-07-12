@@ -36,4 +36,6 @@ public:
 	Vector2f getTextureDimensions();
 
 	void update(float elapsedTime);
+
+	void restart(bool whichBG);
 };
