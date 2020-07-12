@@ -36,8 +36,8 @@ int main()
 	Background primaryBG(true);
 	Background secondaryBG(false);
 
-
-
+	//Created a constant value for the gap between pipes based on screen resolution
+	const float PIPE_GAP = resolution.x / 2.56f;
 
 	//Load in up and down textures for Clappy
 	Texture textureClappyUp = TextureHolder::GetTexture("graphics/clappyUp.png");
@@ -46,10 +46,14 @@ int main()
 	//Create an instance of Clappy
 	Clappy clappy;
 
-	//Create an instance of the Pipe
-	Pipe pipe;
-	float pipeHeight = pipe.getTextureHeight();
-	pipe.setOffset(pipeHeight * (5.0f/23.0f));
+	//Create an array of Pipe objects
+	Pipe pipeArray[5];
+
+	//Create an integer to track the current pipe we're dealing with.
+	int currentPipe = 0;
+
+	//Create a constant maximum number of pipes
+	const int MAX_PIPES = 5;
 
 	//Create a boolean to monitor whether the game is currently playing or paused
 	bool playing = false;
@@ -138,15 +142,31 @@ int main()
 				secondaryBG.setNextPos(primaryBG.getCurrentPosition() + (secondaryBG.getTextureDimensions().x - 10.0f));
 			}
 
-			//Update the first pipe object
-			if (pipe.isActive()) {
-				pipe.update(dtAsSeconds);
-			}
-			else
+			
+			if (pipeArray[currentPipe].getPosition().x < (resolution.x - PIPE_GAP))
 			{
-				pipe.spawn();
+				//New pipe needs to be spawned
+				currentPipe++;
+				if (currentPipe == MAX_PIPES)
+				{
+					currentPipe = 0;
+				}
+				pipeArray[currentPipe].spawn();
 			}
 
+
+			for (int i = 0; i < MAX_PIPES; i++) 
+			{
+				if (pipeArray[i].isActive())
+				{
+					pipeArray[i].update(dtAsSeconds);
+				}
+				if (pipeArray[i].getPosition().x < -pipeArray[i].getWidth())
+				{
+					//Pipe is no longer visible - deactivate.
+					pipeArray[i].deactivate();
+				}
+			}
 
 			//If the space key has just been pressed, clappy needs to go up (if he can)
 			//Otherwise, he needs to go down
@@ -204,7 +224,13 @@ int main()
 		window.draw(secondaryBG.getSprite());
 
 		//Draw the pipe
-		window.draw(pipe.getSprite());
+		for (Pipe pipe : pipeArray)
+		{
+			if (pipe.isActive())
+			{
+				window.draw(pipe.getSprite());
+			}
+		}
 
 		//Draw Clappy
 		window.draw(clappy.getSprite());
