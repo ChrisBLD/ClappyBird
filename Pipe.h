@@ -54,4 +54,7 @@ public:
 	bool hitByPlayer(FloatRect playerPosition);
 
 	void update(float elapsedTime);
+
+	void restart();
+
 };

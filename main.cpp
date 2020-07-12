@@ -92,12 +92,21 @@ int main()
 						playing = true;
 						gameOver = false;
 
+						for (Pipe& pipe : pipeArray)
+						{
+							pipe.restart();
+						}
+
+						//pipeArray[0].spawn();
+
+						currentPipe = 0;
+
 						gamePausedText.setString("Game Paused");
 						FloatRect textRect = gamePausedText.getLocalBounds();
 						//Centre text based on size
 						gamePausedText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 						gamePausedText.setPosition(resolution.x / 2.0f, resolution.y / 2.0f);
-						clock.restart();
+ 						clock.restart();
 					}
 				}
 				else if (event.key.code == Keyboard::Escape)
@@ -189,7 +198,8 @@ int main()
 			//If Clappy is below the resolution
  			if (clappy.getPosition().y > resolution.y)
 			{
-				playing = !playing;
+				clappy.kill();
+				playing = false;
 				gameOver = true;
 				gamePausedText.setString("Game Over 0 Press Enter to restart");
 				FloatRect textRect = gamePausedText.getLocalBounds();
@@ -205,8 +215,9 @@ int main()
 				{
 					if (pipe.hitByPlayer(clappy.getSprite().getGlobalBounds()))
 					{
-						playing = !playing;
+						clappy.kill();
 						gameOver = true;
+						playing = false;
 						gamePausedText.setString("Game Over 0 Press Enter to restart");
 						FloatRect textRect = gamePausedText.getLocalBounds();
 						//Centre text based on size

@@ -22,12 +22,16 @@ private:
 	//Player location
 	Vector2f m_Position;
 
-	//Player sprite
+	//Player sprites
 	Sprite m_Sprite;
+	Sprite m_AliveSprite;
+	Sprite m_DeadSprite;
 
-	//Player texture
+
+	//Player textures
 	Texture m_TextureUp;
 	Texture m_TextureDown;
+	Texture m_TextureDead;
 
 	//Keep track of velocity, acceleration and gravity
 	float m_Velocity;
@@ -45,6 +49,8 @@ public:
 	Vector2f getPosition();
 
 	void restart();
+
+	void kill();
 
 	void update(float elapsedTime, bool spacePressed);
 

@@ -66,8 +66,8 @@ bool Pipe::hitByPlayer(FloatRect playerPosition)
 	{
 		//When the player intersects the tree, we need to make sure that the player
 		//is in the gap.
-		float topLeftY = playerPosition.top;
-		float bottomRightY = playerPosition.top + playerPosition.width;
+		float topLeftY = playerPosition.top + 20.0f;
+		float bottomRightY = playerPosition.top + playerPosition.width - 20.0f;
 
 		float yRangeMin = m_Position.y + PIPE_LENGTH;
 		float yRangeMax = m_Position.y + PIPE_LENGTH + PIPE_OFFSET;
@@ -88,5 +88,12 @@ bool Pipe::hitByPlayer(FloatRect playerPosition)
 void Pipe::update(float elapsedTime)
 {
 	m_Position.x -= (SCROLL_SPEED * elapsedTime);
+	m_Sprite.setPosition(m_Position);
+}
+
+void Pipe::restart()
+{
+	m_isActive = false;
+	m_Position.x = 0.0f;
 	m_Sprite.setPosition(m_Position);
 }
