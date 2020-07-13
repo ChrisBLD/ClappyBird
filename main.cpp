@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <sstream>
 #include "TextureHolder.h"
 #include "Clappy.h"
 #include "Background.h"
@@ -28,9 +29,11 @@ int main()
     //How long has the PLAYING state been active?
     Time gameTimeTotal;
 
-	//Load the font
+	//Load the fonts
 	Font flappyFont;
 	flappyFont.loadFromFile("fonts/FlappyBirdy.ttf");
+	Font scoreFont;
+	scoreFont.loadFromFile("fonts/Roboto-Light.ttf");
 
 	//Create two instances of the Background object to alternate and create scrolling effect
 	Background primaryBG(true);
@@ -67,6 +70,14 @@ int main()
 	gamePausedText.setCharacterSize(85);
 	gamePausedText.setString("Game Paused");
 
+	//Track the score in number of pipes passed
+	int score = 0;
+	Text scoreText;
+	scoreText.setFont(scoreFont);
+	scoreText.setCharacterSize(80);
+	scoreText.setString("Score: 0");
+	scoreText.setPosition(20.0f, resolution.y - 120.0f);
+
 
     while (window.isOpen()) {
 
@@ -91,6 +102,10 @@ int main()
 						secondaryBG.restart(false);
 						playing = true;
 						gameOver = false;
+						score = 0;
+						std::stringstream ss;
+						ss << "Score: " << score;
+						scoreText.setString(ss.str());
 
 						for (Pipe& pipe : pipeArray)
 						{
@@ -169,6 +184,18 @@ int main()
 				if (pipeArray[i].isActive())
 				{
 					pipeArray[i].update(dtAsSeconds);
+					if (pipeArray[i].getPosition().x < clappy.getPosition().x)
+					{
+						if (!pipeArray[i].scoreCounted())
+						{
+							pipeArray[i].counted();
+							score++;
+							std::stringstream ss;
+							ss << "Score: " << score;
+							scoreText.setString(ss.str());
+						}
+
+					}
 				}
 				if (pipeArray[i].getPosition().x < -pipeArray[i].getWidth())
 				{
@@ -239,6 +266,7 @@ int main()
 			clock.restart();
 		}
 
+
 		/*
 		****************************************
 		Draw the scene
@@ -270,6 +298,9 @@ int main()
 			window.draw(gamePausedText);
 		}
 		
+		//Draw score text
+		window.draw(scoreText);
+
 		// Show everything we just drew
         window.display();
     }

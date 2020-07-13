@@ -12,6 +12,8 @@ Pipe::Pipe()
 
 	m_Width = m_Texture.getSize().x;
 
+	m_scoreCounted = false;
+
 	//sf::Vector2f targetSize(200.0f, 1150.0f);
 	//m_Sprite.setScale(
 	//	targetSize.x / m_Sprite.getLocalBounds().width,
@@ -58,6 +60,17 @@ float Pipe::getWidth()
 void Pipe::deactivate()
 {
 	m_isActive = false;
+	m_scoreCounted = false;
+}
+
+bool Pipe::scoreCounted()
+{
+	return m_scoreCounted;
+}
+
+void Pipe::counted()
+{
+	m_scoreCounted = true;
 }
 
 bool Pipe::hitByPlayer(FloatRect playerPosition)
@@ -96,4 +109,5 @@ void Pipe::restart()
 	m_isActive = false;
 	m_Position.x = 0.0f;
 	m_Sprite.setPosition(m_Position);
+	m_scoreCounted = false;
 }

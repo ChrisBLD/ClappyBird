@@ -33,6 +33,9 @@ private:
 	//Is pipe active?
 	bool m_isActive;
 
+	//Has score been counted?
+	bool m_scoreCounted;
+
 	//Pipe width
 	float m_Width;
 
@@ -50,6 +53,10 @@ public:
 	float getWidth();
 
 	void deactivate();
+
+	bool scoreCounted();
+
+	void counted();
 
 	bool hitByPlayer(FloatRect playerPosition);
 
