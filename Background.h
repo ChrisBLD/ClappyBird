@@ -15,9 +15,6 @@ private:
 	//Is background primary or secondary?
 	bool m_IsPrimary;
 
-	//Holds texture of background
-	Texture m_Texture;
-
 	//Holds sprite of background
 	Sprite m_Sprite;
 

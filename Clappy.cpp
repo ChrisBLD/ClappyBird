@@ -4,10 +4,6 @@
 
 Clappy::Clappy()
 {
-	m_TextureDown = TextureHolder::GetTexture("graphics/clappyDown.png");
-	m_TextureUp = TextureHolder::GetTexture("graphics/clappyUp.png");
-	m_TextureDead = TextureHolder::GetTexture("graphics/rip.png");
-
 	restart();
 }
 
@@ -44,11 +40,11 @@ void Clappy::update(float elapsedTime, bool spacePressed)
 	m_Position.y += m_Velocity * elapsedTime;
 
 	if (m_Velocity > 0) { //Clappy is falling -> show falling tex
-		m_Sprite.setTexture(m_TextureDown);
+		m_Sprite.setTexture(TextureHolder::GetTexture("graphics/clappyDown.png"));
 	}
 	else //Clappy is rising -> show rising tex
 	{
-		m_Sprite.setTexture(m_TextureUp);
+		m_Sprite.setTexture(TextureHolder::GetTexture("graphics/clappyUp.png"));
 	}
 
 	//m_Position.y = m_Position.y + (elapsedTime * gravity);
@@ -78,9 +74,9 @@ void Clappy::restart()
 	m_Gravity = STARTING_GRAV;
 
 	m_Sprite = m_AliveSprite;
-	m_DeadSprite.setTexture(m_TextureDead);
+	m_DeadSprite.setTexture(TextureHolder::GetTexture("graphics/rip.png"));
 
-	m_Sprite.setTexture(m_TextureDown);
+	m_Sprite.setTexture(TextureHolder::GetTexture("graphics/clappyDown.png"));
 	sf::Vector2f targetSize(CLAPPY_SIZE_X, CLAPPY_SIZE_Y);
 	m_Sprite.setScale(
 		targetSize.x / m_Sprite.getLocalBounds().width,

@@ -24,9 +24,6 @@ private:
 	//Constant starting x location of pipes (they will all spawn at the same location)
 	const float STARTING_X = VideoMode::getDesktopMode().width + 20.0f;
 
-	//Texture of pipe
-	Texture m_Texture;
-
 	//Sprite of pipe
 	Sprite m_Sprite;
 

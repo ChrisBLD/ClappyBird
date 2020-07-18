@@ -1,4 +1,5 @@
 #pragma once
+#ifndef TEXTURE_HOLDER_H
 #define TEXTURE_HOLDER_H
 
 #include <SFML/Graphics.hpp>
@@ -21,3 +22,5 @@ public:
 	//Returns a reference to a texture. Function can be used without an instance of the class.
 	static Texture& GetTexture(std::string const& filename);
 };
+
+#endif

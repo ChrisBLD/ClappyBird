@@ -27,12 +27,6 @@ private:
 	Sprite m_AliveSprite;
 	Sprite m_DeadSprite;
 
-
-	//Player textures
-	Texture m_TextureUp;
-	Texture m_TextureDown;
-	Texture m_TextureDead;
-
 	//Keep track of velocity, acceleration and gravity
 	float m_Velocity;
 	float m_Acceleration;

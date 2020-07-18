@@ -3,14 +3,11 @@
 
 Pipe::Pipe()
 {
-
-	m_Texture = TextureHolder::GetTexture("graphics/tree.png");
-
-	m_Sprite.setTexture(m_Texture);
+	m_Sprite.setTexture(TextureHolder::GetTexture("graphics/tree.png"));
 
 	m_isActive = false;
 
-	m_Width = m_Texture.getSize().x;
+	m_Width = TextureHolder::GetTexture("graphics/tree.png").getSize().x;
 
 	m_scoreCounted = false;
 

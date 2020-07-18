@@ -4,10 +4,9 @@
 
 Background::Background(bool whichBG)
 {
-	m_Texture = TextureHolder::GetTexture("graphics/backgroundDouble.png");
-	m_Sprite.setTexture(m_Texture);
+	m_Sprite.setTexture(TextureHolder::GetTexture("graphics/backgroundDouble.png"));
 
-	m_Dimensions = Vector2f(m_Texture.getSize());
+	m_Dimensions = Vector2f((TextureHolder::GetTexture("graphics/backgroundDouble.png")).getSize());
 
 	restart(whichBG);
 }
