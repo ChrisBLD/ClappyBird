@@ -5,10 +5,10 @@ I decided to build a Flappy Bird clone as the game is relatively simple, but als
 
 For this project, I used two sections of code from other sources.
 
-1. The TextureHolder.cpp and TextureHolder.h files define a singleton object which serves as a cache for textures in the game. Instead of needing to pull in textures from their files every single time they are used, the TextureHolder object ensures that textures are only ever imported once – if a texture is requested after being imported, it will simply be loaded from the cache. This code was used in the C++ Game Programming 1 course, and all credit for this approach is given to John Horton, the instructor for that course.
+1. The TextureHolder.cpp and TextureHolder.h files define a singleton object which serves as a cache for textures in the game. Instead of needing to pull in textures from their files every single time they are used, the TextureHolder object ensures that textures are only ever imported once â€“ if a texture is requested after being imported, it will simply be loaded from the cache. This code was used in the C++ Game Programming 1 course, and all credit for this approach is given to John Horton, the instructor for that course.
 2. The simply physics implemented for Clappy (including the use of the m\_Acceleration and m\_Velocity variables) follows the [Code-It-Yourself! Flappy Bird (Quick and Simple C++)](https://www.youtube.com/watch?v=b6A4XHkTjs8) tutorial by javidx9. This version of the game was implemented using a console-based game engine, but the mechanism for applying the physics is the same. I used this code as my understanding of physics is quite poor and I wanted to implement something that felt smooth (as opposed to a static gravity value being applied).
 
-The assets used are recycled from the C++ Game Programming 1 course mentioned earlier – these assets were for a different game, but I edited them to be more appropriate for this game. The rest of the code for this game is my own independent work.
+The assets used are recycled from the C++ Game Programming 1 course mentioned earlier â€“ these assets were for a different game, but I edited them to be more appropriate for this game. The rest of the code for this game is my own independent work.
 
 Some of the key challenges of this game were:
 
@@ -17,6 +17,6 @@ Some of the key challenges of this game were:
 3. Implementing random pipe height. When pipes are spawned, the position of the sprite is randomly generated as a value within a given range. This will move the &quot;gap&quot; on the pipe image to a different height each time. See the pipe image in the graphics folder to see how the object is built for this.
 4. Collision detection for the pipes/Clappy. This aspect is important for both game over checks and incrementing the score. If a player has entered the pipe (i.e. if the rightmost point on Clappy has intersected with the leftmost point on the pipe), the game checks to see if the player is currently in the &quot;gap&quot; of the pipe, or colliding with the pipe itself by comparing Clappy&#39;s coordinates with the coordinates of the pipe gap&#39;s boundaries. As soon as Clappy&#39;s leftmost point enters the pipe, the score is incremented.
 
-![](RackMultipart20200718-4-2smpm3_html_91f44086cbbce0ae.png)
+![Infinitely Scrolling Background Demo](https://github.com/ChrisBLD/ClappyBird/clappybirdscrollingbackground.png)
 
 See [https://youtu.be/y\_BaLGDbhZM](https://youtu.be/y_BaLGDbhZM) for a quick demonstration of the game, showing the game itself, score increments, pressing Enter to pause, losing the game by hitting a pipe, losing the game by falling out the map, and restarting the game by pressing Enter after losing.
