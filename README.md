@@ -17,6 +17,6 @@ Some of the key challenges of this game were:
 3. Implementing random pipe height. When pipes are spawned, the position of the sprite is randomly generated as a value within a given range. This will move the &quot;gap&quot; on the pipe image to a different height each time. See the pipe image in the graphics folder to see how the object is built for this.
 4. Collision detection for the pipes/Clappy. This aspect is important for both game over checks and incrementing the score. If a player has entered the pipe (i.e. if the rightmost point on Clappy has intersected with the leftmost point on the pipe), the game checks to see if the player is currently in the &quot;gap&quot; of the pipe, or colliding with the pipe itself by comparing Clappy&#39;s coordinates with the coordinates of the pipe gap&#39;s boundaries. As soon as Clappy&#39;s leftmost point enters the pipe, the score is incremented.
 
-![Infinitely Scrolling Background Demo](https://github.com/ChrisBLD/ClappyBird/clappybirdscrollingbackground.png)
+![Infinitely Scrolling Background Demo](https://github.com/ChrisBLD/ClappyBird/blob/master/clappybirdscrollingbackground.png)
 
 See [https://youtu.be/y\_BaLGDbhZM](https://youtu.be/y_BaLGDbhZM) for a quick demonstration of the game, showing the game itself, score increments, pressing Enter to pause, losing the game by hitting a pipe, losing the game by falling out the map, and restarting the game by pressing Enter after losing.
